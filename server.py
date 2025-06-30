@@ -6,8 +6,6 @@ import requests
 app = Flask(__name__)
 CORS(app)
 
-app = Flask(__name__)
-
 def get_vore_mentions():
     now = int(datetime.datetime.utcnow().timestamp())
     one_hour = 3600
@@ -30,6 +28,10 @@ def get_vore_mentions():
             print(f"Error during request: {e}")
 
     return count
+
+@app.route("/")
+def home():
+    return "This server counts vore mentions. Visit /vorecount to get the data."
 
 @app.route("/vorecount")
 def vore_count():
